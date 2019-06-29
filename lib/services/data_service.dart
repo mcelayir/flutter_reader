@@ -13,17 +13,9 @@ class JsonDataService extends DataService{
 
   @override
   Future<List<Category>> getCategories() async{
-    String content = await _loadAssetFile();
+    String content = await rootBundle.loadString(filePath);
     List<dynamic> parsedJson = json.decode(content);
-    List<Category> categories = new List();
-    parsedJson.forEach((value) => {
-    categories.add(Category.fromJson(value))
-    });
-    return categories;
-  }
-
-  Future<String> _loadAssetFile() async {
-    return await rootBundle.loadString(filePath);
+    return parsedJson.map((value) => Category.fromJson(value)).toList();
   }
 
 }
