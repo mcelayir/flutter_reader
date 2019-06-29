@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_reader/models/source.dart';
+import 'package:flutter_reader/routes/webview_route.dart';
 import 'package:flutter_reader/services/rss_service.dart';
 import 'package:flutter_reader/views/cards/rss_item_card.dart';
 import 'package:webfeed/webfeed.dart';
@@ -31,6 +32,10 @@ class SourceFeedRoute extends StatelessWidget {
                           InkWell(
                               onTap: () {
                                 print('tapped');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => WebViewRoute(item.link)),
+                                );
                               },
                               child: RssItemCard(context, item)
                           );
